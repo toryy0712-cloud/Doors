@@ -46,12 +46,23 @@ button:hover,button.on{background:var(--g);color:#1a0f0b}
 #acts{display:none;position:fixed;right:14px;bottom:14px;z-index:6;grid-template-columns:repeat(2,78px);gap:10px}.touch #acts{display:grid}
 #acts button{position:static;width:78px;height:78px;border-radius:50%;font-size:14px;padding:0;background:rgba(26,15,11,.75);touch-action:none}#acts button.on,#acts button:active{background:var(--g);color:#1a0f0b}
 #jb{left:30px;bottom:30px;top:auto;margin:0;opacity:.45}
+
+#qz{overflow-y:auto;justify-content:flex-start}
+#qw{margin:auto;display:flex;flex-direction:column;align-items:center;gap:10px;width:min(94vw,540px)}
+#qz h2{margin:0;font-weight:400;letter-spacing:.2em;color:var(--r);font-size:clamp(22px,5.5vw,34px)}
+#qq{margin:4px 0;font-size:clamp(17px,4.4vw,22px);line-height:1.55;color:var(--p)}
+#qc{display:flex;flex-direction:column;gap:8px;width:100%}
+#qc button{text-align:left;padding:10px 14px;font-size:clamp(14px,3.8vw,17px);line-height:1.4}
+#qc.done button{pointer-events:none}#qc.done button:not(.ok):not(.no){opacity:.5}
+#qc button.ok{background:#2d5a2d;border-color:#7c7;color:#fff}
+#qc button.no{background:#6a1c18;border-color:#d55;color:#fff}
+#qr{font-size:18px;color:var(--g);min-height:1.2em}#qe{font-size:14px;line-height:1.6}#qs{font-size:11px;opacity:.45}
 </style></head><body>
 <div id="hud"><div id="rn">ROOM 1</div><div id="hb"><i id="hf"></i></div></div>
 <div id="pr"></div><div id="msg"></div><div id="dot"></div><div id="hb2"></div><div id="top"><button id="bag">🎒</button><button id="bpz">❚❚</button></div><div id="inv" class="hide"></div><div id="banner"></div><div id="red"></div><div id="fade"></div><div id="slit"></div>
 <button id="gear">⚙</button><div id="adm"><b style="width:100%">관리자 모드</b></div>
 <div id="jb"><i></i></div><div id="acts"><button id="bE">사용</button><button id="bH">숨기</button><button id="bJ">점프</button><button id="bC">앉기</button><button id="bU">아이템</button><button id="bR">달리기</button></div>
-<div class="ov" id="menu"><h1>DOORS<small>THE HOTEL</small></h1><p id="mp">끝없는 호텔의 문을 열고 100번째 방까지 탈출하세요. 호텔·도서관·병원 방이 랜덤으로 나옵니다. 아이템을 모으고, 괴물을 피하세요.</p><p id="mk">WASD 이동 · Shift 달리기 · C 앉기 · Space 점프 · 1~5 아이템 · E 상호작용 · F 손전등</p>
+<div class="ov" id="menu"><h1>DOORS<small>THE HOTEL</small></h1><p id="mp">끝없는 호텔의 문을 열고 100번째 방까지 탈출하세요. 호텔·도서관·병원 방이 랜덤으로 나옵니다. 아이템을 모으고, 괴물을 피하세요. 괴물에게 쓰러져도 퀴즈를 맞히면 다시 일어날 수 있어요.</p><p id="mk">WASD 이동 · Shift 달리기 · C 앉기 · Space 점프 · 1~5 아이템 · E 상호작용 · F 손전등</p>
 <div class="mb"><button id="bs">게임 시작</button><button id="bc">이어하기</button><button id="bset">설정</button><button id="bdex">괴물 도감</button><button id="bcr">제작자 정보</button></div></div>
 <div class="ov hide" id="pz"><h1 style="font-size:48px">일시정지</h1><div class="mb"><button id="pres">계속하기</button><button id="pbset">설정</button><button id="pmenu">저장 후 메인 메뉴</button></div></div>
 <div class="ov hide" id="set"><h2>설정</h2><label>음량<input id="vol" type="range" min="0" max="1" step=".05" value=".7"></label>
@@ -61,6 +72,7 @@ button:hover,button.on{background:var(--g);color:#1a0f0b}
 <div class="ov hide" id="dex"><h2>괴물 도감</h2><div id="dl"></div><button id="dexx">닫기</button></div>
 <div class="ov hide" id="cr"><h2>제작자 정보</h2><p>DOORS: THE HOTEL<br>Roblox DOORS에서 영감을 받은 팬 게임 · Three.js 기반<br>제작: 사용자 + Claude (Anthropic)</p><button id="crx">닫기</button></div>
 <div class="ov hide" id="over"><h1 style="color:var(--r)">GAME OVER</h1><p id="ot"></p><button id="br">저장 지점에서 다시 시작</button></div>
+<div class="ov hide" id="qz"><div id="qw"><h2>💀 쓰러졌습니다</h2><p>문제를 맞히면 다시 일어날 수 있어요!</p><div id="qq"></div><div id="qc"></div><div id="qr"></div><p id="qe"></p><button id="qn" class="hide"></button><p id="qs"></p></div></div>
 <div class="ov hide" id="win"><h1>ESCAPE</h1><p>100번째 문을 열고 호텔을 빠져나왔습니다.</p><button onclick="location.reload()">처음으로</button></div>
 <div class="ov hide" id="pwd"><p>관리자 비밀번호</p><input id="pw" type="password" inputmode="numeric" autocomplete="off"><div><button id="pwok">확인</button> <button id="pwno">취소</button></div><p id="pwe" style="color:#d44"></p></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -81,6 +93,7 @@ const fl=new THREE.SpotLight(0xfff0d0,1.2,16,.55,.6,1.5);cam.add(fl,fl.target);f
 addEventListener('resize',()=>{R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()});
 // ---- 상태
 let TL=23,st='menu',room=1,hp=100,W=7,D=16,Hh=3.2,grp,col=[],wards=[],door,doorT=-1,hid=null,rs=null,sk=null,rushT=-1,stT=-1,flick=0,trans=0,yaw=0,pitch=0,locked=0,god=0,bobT=0,lastS=0,hurt=0,admOpen=0,authed=0,texs=[],baseI=1.2,tipRush=0,inv={flash:1,pick:0,key:0,cross:0,vit:0},sel=0,boost=0,stun=0,roomT=0,hidT=0,dm=1,FM=1,vol=.7,fpsI=16,lastR=0,MG,crouch=0,tCr=0,tJump=0,ch2=1.65,jy0=0,yv=0,gnd=1,drawers=[],snares=[],dLock=0,rushType='rush',eyes=null,eyesOn=0,scT=-1,scO=null,seekT=-1,seekO=null,fig=null,hbT=0,TN='';
+let grace=0;
 const K={},joy={x:0,y:0,run:0},vel=new THREE.Vector3(),BG=new THREE.BoxGeometry(1,1,1),mats={};
 const M=(c,o)=>{const k=c+JSON.stringify(o||{});return mats[k]||(mats[k]=new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.85},o)))};
 function bx(g,w,h,d,x,y,z,m,cast=true){const o=new THREE.Mesh(BG,m);o.scale.set(w,h,d);o.position.set(x,y,z);o.castShadow=cast;o.receiveShadow=true;g.add(o);return o}
@@ -170,15 +183,15 @@ function act(){if(st!='play'||trans)return;
  const t=target();if(!t)return;if(t.t=='dr'){openDr(t.w);return}
  if(t.t=='ward'){if(room>=10&&Math.random()<.08*FM){hurtP(15,'j');say('Jack!');tone(1600,.5,.3,'sawtooth',200);return}hid=t.w;hidT=0;cam.position.set(t.w.x,1.55,t.w.z);yaw=t.w.side>0?Math.PI/2:-Math.PI/2;pitch=0;vel.set(0,0,0);$('slit').style.display='block';tone(150,.25,.12,'sine')}
  else if(doorT<0)tryDoor()}
-function hurtP(n,by){if(god)return;hp-=n*dm;hurt=1;tone(70,.5,.3,'sawtooth',30);if(hp<=0)die(by)}
+function hurtP(n,by){if(god||grace>0)return;hp-=n*dm;hurt=1;tone(70,.5,.3,'sawtooth',30);if(hp<=0)die(by)}
 const TIPS={r:'Rush에게 당했습니다. 조명이 깜빡이고 경고음이 들리면 가까운 옷장에 숨으세요(E).',s:'Dread에게 잡혔습니다. 달려서 거리를 벌리거나 옷장에 숨어 사라질 때까지 기다리세요.',e:'Eyes를 바라보면 체력이 깎입니다. 시선을 돌리세요.',c:'Screech는 나타나면 바로 쳐다보세요.',k:'Seek는 숨어도 소용없습니다. 멈추지 말고 문까지 달리세요.',f:'Figure는 소리에 반응합니다. C(앉기)로 조용히 걷거나 옷장에 숨으세요.',h:'옷장에 너무 오래 있으면 Hide가 밀어냅니다. 12초 안에 나오세요.',t:'서랍에 Timothy가 숨어 있었습니다.',j:'옷장에서 Jack이 튀어나왔습니다.',x:'바닥의 Snare를 밟았습니다. 점프로 넘어가세요.'};
 function die(by){if(st=='over')return;st='over';document.exitPointerLock&&document.exitPointerLock();
  $('ot').textContent=TIPS[by]||'사망했습니다.';
- $('over').classList.remove('hide');tone(60,2,.4,'sawtooth',20)}
+ tone(60,2,.4,'sawtooth',20);showQ()}
 function hit(x,z){if(Math.abs(x)>W/2-.4||z>D/2-.4||z<-D/2+.5)return 1;for(const c of col)if(Math.abs(x-c.x)<c.hw+.35&&Math.abs(z-c.z)<c.hd+.35)return 1;return 0}
 // ---- 업데이트
 function update(dt,t){
- const p=cam.position;stun-=dt;boost-=dt;roomT+=dt;dust.rotation.y+=dt*.05;
+ const p=cam.position;stun-=dt;boost-=dt;grace-=dt;roomT+=dt;dust.rotation.y+=dt*.05;
  if(hid){hidT+=dt;if(hidT>12){const w=hid;hid=null;hidT=0;p.set(w.x-w.side*1.4,1.65,w.z);$('slit').style.display='none';hurtP(20,'h');tone(90,.6,.3,'sawtooth',40)}}
  if(!hid&&!trans&&doorT<0){
   let f=(K.KeyW?1:0)-(K.KeyS?1:0)-joy.y,s=(K.KeyD?1:0)-(K.KeyA?1:0)+joy.x;const l=Math.hypot(f,s);if(l>1){f/=l;s/=l}
@@ -205,10 +218,10 @@ function update(dt,t){
   if(sk){if(d>.5){const v=(w?1.6:2.7)*dt;m.x+=dx/d*v;m.z+=dz/d*v}
    m.x=Math.max(-W/2+1.2,Math.min(W/2-1.2,m.x));m.z=Math.max(-D/2+1,Math.min(D/2-1,m.z));
    sk.m.rotation.y=Math.atan2(p.x-m.x,p.z-m.z);sk.m.position.y=Math.sin(t*6)*.04;
-   if(!hid&&Math.hypot(p.x-m.x,p.z-m.z)<.9&&!god)die('s')}}
+   if(!hid&&Math.hypot(p.x-m.x,p.z-m.z)<.9&&!god&&grace<=0)die('s')}}
  // Eyes
  if(eyes){const dx=eyes.position.x-p.x,dz=eyes.position.z-p.z,[fx,fz]=fwd();eyes.lookAt(p.x,1.6,p.z);eyes.position.y=2.2+Math.sin(t*1.5)*.15;
-  if(!hid&&(dx*fx+dz*fz)/Math.hypot(dx,dz)>.88&&Math.hypot(dx,dz)<16){if(!god){hp-=12*dm*dt;hurt=Math.max(hurt,.5);if(hp<=0)die('e')}if(Math.random()<.04)tone(rnd(700,1100),.2,.08,'sine',400,eyes.position)}}
+  if(!hid&&(dx*fx+dz*fz)/Math.hypot(dx,dz)>.88&&Math.hypot(dx,dz)<16){if(!god&&grace<=0){hp-=12*dm*dt;hurt=Math.max(hurt,.5);if(hp<=0)die('e')}if(Math.random()<.04)tone(rnd(700,1100),.2,.08,'sine',400,eyes.position)}}
  // Screech
  if(scT>0){scT-=dt;if(scT<=0){if(hid)scT=3;else{const[fx,fz]=fwd();scO={t:1.4,m:mkScreech()};scO.m.position.set(p.x-fx*2,1.5,p.z-fz*2);S.add(scO.m);tone(1800,.5,.2,'sawtooth',900,scO.m.position)}}}
  if(scO){scO.t-=dt;const m=scO.m.position,[fx,fz]=fwd(),d=Math.hypot(m.x-p.x,m.z-p.z)||1;scO.m.lookAt(p.x,1.5,p.z);
@@ -222,7 +235,7 @@ function update(dt,t){
   if(nz&&d<nz){u.m=2;u.lt=3}
   if(u.m==2){u.lt-=dt;if(!hid){const dz=p.z-m.z,dx=p.x-m.x;m.z+=Math.sign(dz)*Math.min(Math.abs(dz),3.6*dt);m.x+=Math.sign(dx)*Math.min(Math.abs(dx),2.2*dt);fig.rotation.y=Math.atan2(dx,dz)}if(u.lt<=0)u.m=0}
   else{m.z+=u.v*1.1*dt;if(m.z<-D/2+3)u.v=1;if(m.z>D/2-3)u.v=-1;m.x+=-m.x*dt;fig.rotation.y=u.v>0?0:Math.PI}
-  m.x=Math.max(-W/2+1.4,Math.min(W/2-1.4,m.x));if(d<.9&&!hid&&!god)die('f')}
+  m.x=Math.max(-W/2+1.4,Math.min(W/2-1.4,m.x));if(d<.9&&!hid&&!god&&grace<=0)die('f')}
  // Snare
  for(const q of snares)if(q.on&&p.y<2&&Math.hypot(p.x-q.x,p.z-q.z)<.5){q.on=0;q.m.scale.y=.4;hurtP(15,'x');stun=1;vel.set(0,0,0);say('Snare에 걸렸다!')}
  if(seekO||sk||(fig&&fig.userData.m==2)){hbT-=dt;if(hbT<=0){hbT=.75;tone(55,.18,.3,'sine',35)}}
@@ -273,7 +286,7 @@ document.addEventListener('pointerlockchange',()=>{locked=!!document.pointerLock
 $('bs').addEventListener('click',()=>{if(st=='pause')st='play'});
 let drag=0;addEventListener('mousedown',()=>drag=1);addEventListener('mouseup',()=>drag=0);
 addEventListener('mousemove',e=>{if((locked||drag)&&st=='play'&&!hid&&!admOpen){yaw-=e.movementX*.0022;pitch=Math.max(-1.3,Math.min(1.3,pitch-e.movementY*.0022))}});
-addEventListener('keydown',e=>{if(e.target.tagName=='INPUT')return;if(e.code=='Backquote'){toggleAdm();return}K[e.code]=1;
+addEventListener('keydown',e=>{if(e.target.tagName=='INPUT')return;if(st=='over'&&QCUR&&!QDONE&&/^Digit[1-5]$/.test(e.code)){answerQ(+e.code[5]-1);return}if(e.code=='Backquote'){toggleAdm();return}K[e.code]=1;
  if(e.code=='KeyE')act();if(e.code=='KeyF')fl.intensity=fl.intensity?0:1.2;if(/^Digit[1-5]$/.test(e.code)){sel=+e.code[5]-1;useItem()}if(e.code=='KeyP')pauseGame();if(e.code=='Space')e.preventDefault()});
 addEventListener('keyup',e=>K[e.code]=0);
 // 관리자
@@ -299,6 +312,33 @@ if(TOUCH){const jb=$('jb'),jk=jb.firstChild,Rr=55;let jid=null,lid=null,jx=0,jy=
  document.addEventListener('touchend',en);document.addEventListener('touchcancel',en);document.addEventListener('contextmenu',e=>e.preventDefault());
  const tb=(id,dn,up)=>{const b=$(id);b.addEventListener('touchstart',e=>{e.preventDefault();dn()},{passive:false});if(up){b.addEventListener('touchend',up);b.addEventListener('touchcancel',up)}};
  tb('bE',act);tb('bH',()=>{const t=hid?1:target();if(t&&(hid||t.t=='ward'))act();else say('가까운 옷장이 없습니다')});tb('bJ',()=>tJump=1,()=>tJump=0);tb('bC',()=>{tCr=!tCr;$('bC').classList.toggle('on',tCr)});tb('bU',()=>useItem());tb('bR',()=>joy.run=1,()=>joy.run=0)}
+// ---- 퀴즈 부활: 죽으면 문제를 풀고, 맞히면 되살아남 (문제는 Supabase에서 불러오고, 실패하면 내장 문제 사용)
+const SB='https://ertyuadsjrykyibtsrxy.supabase.co/rest/v1/',SBK=['sb_publishable_-va97_Zvrd10IZFb-5ediQ_Kgq4TBF5','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVydHl1YWRzanJ5a3lpYnRzcnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3NTM1MDAsImV4cCI6MjEwODMyOTUwMH0.iJ0lEfBqJ47RD5k74Jfi5jCxjCeRUvr9dGkDVv5TAlM'];
+const QF=[["구석기 시대 사람들의 생활 모습으로 알맞은 것은?", ["농사를 지으며 살았다.", "동굴이나 바위 그늘에서 살았다.", "청동으로 농기구를 만들었다.", "벼농사를 시작했다.", "성을 쌓고 나라를 세웠다."], 2, "구석기 시대 사람들은 사냥과 열매 채집을 하며 동굴이나 바위 그늘에서 생활했어요."], ["신석기 시대의 생활 모습으로 알맞은 것은?", ["뗀석기를 사용했다.", "동굴에서만 생활했다.", "농사를 짓고 한곳에 정착했다.", "철제 무기를 사용했다.", "고인돌을 만들었다."], 3, "신석기 시대에는 농사를 짓기 시작하면서 움집을 짓고 한곳에 정착해 살았어요."], ["청동기 시대의 대표적인 유물은 무엇일까요?", ["빗살무늬 토기", "주먹도끼", "반달 돌칼", "철제 갑옷", "화승총"], 3, "반달 돌칼은 청동기 시대에 곡식을 수확할 때 사용했던 도구예요."], ["우리 역사에서 최초의 국가로 알려진 나라는 어디일까요?", ["고구려", "백제", "신라", "고조선", "발해"], 4, "고조선은 우리 역사에서 최초의 국가로 알려져 있어요."], ["고조선을 세웠다고 전해지는 인물은 누구일까요?", ["주몽", "단군왕검", "박혁거세", "온조", "대조영"], 2, "단군왕검은 단군 신화에서 고조선을 세운 인물이에요."], ["고구려, 백제, 신라에 대한 설명으로 알맞은 것은?", ["모두 같은 날 세워졌다.", "모두 중국의 나라였다.", "우리 역사 속의 삼국이다.", "모두 바다 위에 세워졌다.", "모두 조선 시대의 나라이다."], 3, "고구려, 백제, 신라는 우리 역사에서 삼국이라고 불리는 세 나라예요."], ["고구려를 세운 인물은 누구일까요?", ["온조", "박혁거세", "대조영", "주몽", "왕건"], 4, "주몽은 기원전 37년에 고구려를 세운 인물이에요."], ["신라가 삼국 통일을 이루는 과정에서 힘을 합친 나라는 어디일까요?", ["일본", "당", "몽골", "인도", "베트남"], 2, "신라는 당과 힘을 합쳐 백제와 고구려를 멸망시켰어요. 이후 당을 몰아내고 삼국 통일을 이루었어요."], ["발해를 세운 인물은 누구일까요?", ["단군왕검", "주몽", "대조영", "왕건", "이성계"], 3, "대조영은 고구려가 멸망한 뒤 여러 사람과 함께 발해를 세웠어요."], ["발해에 대한 설명으로 알맞은 것은?", ["고조선보다 먼저 세워졌다.", "대조영이 세운 나라이다.", "조선의 수도였다.", "신라가 세운 나라이다.", "고려 다음에 세워졌다."], 2, "발해는 대조영이 세운 나라로, 고구려의 문화를 이어받았어요."]].map(([q,c,a,e])=>({q,c,a:a-1,e}));
+let QBANK=QF,QDECK=[],QCUR=null,QDONE=0,QSRC='내장 문제';
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const toQ=r=>{const c=[r.choice1,r.choice2,r.choice3,r.choice4,r.choice5],a=+r.answer-1;return r.question&&c.every(x=>x&&String(x).trim())&&a>=0&&a<5?{q:r.question,c:c.map(String),a,e:r.explanation||''}:null};
+async function loadQ(){for(const k of SBK){try{const h={apikey:k};if(k[0]=='e')h.Authorization='Bearer '+k;
+  const r=await fetch(SB+'quiz_questions?select=*&is_active=eq.true&order=id',{headers:h});if(!r.ok)continue;
+  const b=(await r.json()).map(toQ).filter(Boolean);if(b.length){QBANK=b;QDECK=[];QSRC='Supabase';return}}catch(e){}}
+ console.warn('[quiz] Supabase에서 문제를 불러오지 못해 내장 문제를 사용합니다')}
+function showQ(){if(!QDECK.length)QDECK=shuf(QBANK);const q=QDECK.pop(),ord=shuf(q.c.map((_,i)=>i)),box=$('qc');
+ QCUR={q,ans:ord.indexOf(q.a)};QDONE=0;$('qq').textContent=q.q;box.innerHTML='';box.className='';
+ ord.forEach((o,pos)=>{const b=document.createElement('button');b.textContent='①②③④⑤'[pos]+' '+q.c[o];b.onclick=()=>answerQ(pos);box.appendChild(b)});
+ $('qr').textContent='';$('qe').textContent='';$('qn').classList.add('hide');$('qs').textContent='문제 출처: '+QSRC+' ('+QBANK.length+'문제)';
+ $('qz').classList.remove('hide');$('qz').scrollTop=0}
+function answerQ(pos){const bs=$('qc').children;if(!QCUR||QDONE||pos>=bs.length)return;QDONE=1;const ok=pos==QCUR.ans;
+ $('qc').className='done';bs[QCUR.ans].classList.add('ok');if(!ok)bs[pos].classList.add('no');
+ $('qr').textContent=ok?'⭕ 정답입니다!':'❌ 틀렸습니다. 정답은 '+'①②③④⑤'[QCUR.ans]+' 입니다.';
+ $('qe').textContent=QCUR.q.e?'해설: '+QCUR.q.e:'';
+ const n=$('qn');n.textContent=ok?'다시 일어나기':'게임 오버';n.onclick=ok?revive:()=>{$('qz').classList.add('hide');$('over').classList.remove('hide')};n.classList.remove('hide');
+ tone(ok?900:110,.35,.18,ok?'sine':'sawtooth',ok?1400:50)}
+function revive(){$('qz').classList.add('hide');
+ if(rs){rs.m&&S.remove(rs.m);rs=null}if(sk){S.remove(sk.m);sk=null}if(seekO){S.remove(seekO.m);seekO=null}if(scO){S.remove(scO.m);scO=null}
+ if(fig){fig.userData.m=0;fig.position.set(0,0,cam.position.z<0?D/2-3:-D/2+3)}
+ hp=100;hurt=0;grace=3;stun=0;vel.set(0,0,0);$('red').style.opacity=0;
+ st='play';lock();say('정답! 다시 일어났다 — 3초간 무적');tone(500,.6,.2,'sine',1000)}
+loadQ();
 build(1);requestAnimationFrame(loop);
 })();
 </script></body></html>
