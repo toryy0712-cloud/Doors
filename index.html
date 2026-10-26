@@ -68,16 +68,13 @@ button:hover,button.on{background:var(--g);color:#1a0f0b}
 #xmem{display:flex;flex-direction:column;gap:6px;width:min(90vw,320px)}#xmem div{padding:8px 12px;border:1px solid #5a4630;text-align:left}
 #xmsg,#xlm{margin:0;min-height:1.2em;font-size:14px;color:var(--r)}#xrm{margin:0;min-height:1.2em;font-size:14px;color:var(--g)}
 #xpl{position:fixed;left:10px;top:58px;z-index:6;font-size:12px;line-height:1.6;pointer-events:none;color:var(--p);text-shadow:0 1px 4px #000}
-.ad{position:absolute;top:50%;transform:translateY(-50%);width:160px;height:600px;max-height:86vh;display:flex;align-items:center;justify-content:center;border:1px dashed #5a4020;color:#7a6040;font-size:12px;overflow:hidden;text-align:center}#adL{left:14px}#adR{right:14px}
-@media(max-width:960px),(max-height:520px){.ad{display:none}}
-.slot.pk{outline:2px dashed #fff;transform:translateY(-6px)}#bG{display:none}.mp #bG{display:block}#jb{pointer-events:auto;cursor:grab}
 </style></head><body>
 <div id="hud"><div id="rn">ROOM 1</div><div id="hb"><i id="hf"></i></div></div>
 <div id="pr"></div><div id="msg"></div><div id="dot"></div><div id="hb2"></div><div id="top"><button id="bag">🎒</button><button id="bpz">❚❚</button></div><div id="inv" class="hide"></div><div id="banner"></div><div id="red"></div><div id="fade"></div><div id="slit"></div>
 <button id="gear">⚙</button><div id="adm"><b style="width:100%">관리자 모드</b></div>
-<div id="jb"><i></i></div><div id="acts"><button id="bE">사용</button><button id="bH">숨기</button><button id="bJ">점프</button><button id="bC">앉기</button><button id="bU">아이템</button><button id="bR">달리기</button><button id="bG">🎁 주기</button></div>
-<div class="ov" id="menu"><h1>DOORS<small>THE HOTEL</small></h1><p id="mp">끝없는 호텔의 문을 열고 100번째 방까지 탈출하세요. 호텔·도서관·병원 방이 랜덤으로 나옵니다. 아이템을 모으고, 괴물을 피하세요. 괴물에게 쓰러져도 퀴즈를 맞히면 다시 일어날 수 있어요.</p><p id="mk">WASD 이동 · Shift 달리기 · C 앉기 · Space 점프 · 1~5 아이템 · E 상호작용 · 화면 클릭 또는 F 손전등 · G 아이템 주기(멀티) · Esc 마우스 해제</p>
-<div class="mb"><button id="bs">게임 시작</button><button id="bc">이어하기</button><button id="bset">설정</button><button id="bdex">괴물 도감</button><button id="bcr">제작자 정보</button></div><p style="font-size:13px;margin:6px"><a href="guide.html" style="color:var(--g)">가이드·괴물 도감</a> · <a href="privacy.html" style="color:var(--g)">개인정보처리방침</a></p></div>
+<div id="jb"><i></i></div><div id="acts"><button id="bE">사용</button><button id="bH">숨기</button><button id="bJ">점프</button><button id="bC">앉기</button><button id="bU">아이템</button><button id="bR">달리기</button></div>
+<div class="ov" id="menu"><h1>DOORS<small>THE HOTEL</small></h1><p id="mp">끝없는 호텔의 문을 열고 100번째 방까지 탈출하세요. 호텔·도서관·병원 방이 랜덤으로 나옵니다. 아이템을 모으고, 괴물을 피하세요. 괴물에게 쓰러져도 퀴즈를 맞히면 다시 일어날 수 있어요.</p><p id="mk">WASD 이동 · Shift 달리기 · C 앉기 · Space 점프 · 1~5 아이템 · E 상호작용 · F 손전등</p>
+<div class="mb"><button id="bs">게임 시작</button><button id="bc">이어하기</button><button id="bset">설정</button><button id="bdex">괴물 도감</button><button id="bcr">제작자 정보</button></div></div>
 <div class="ov hide" id="pz"><h1 style="font-size:48px">일시정지</h1><div class="mb"><button id="pres">계속하기</button><button id="pbset">설정</button><button id="pmenu">저장 후 메인 메뉴</button></div></div>
 <div class="ov hide" id="set"><h2>설정</h2><label>음량<input id="vol" type="range" min="0" max="1" step=".05" value=".7"></label>
 <label>그래픽<select id="qual"><option value="2">높음</option><option value="1" selected>보통</option><option value="0">낮음(저사양·그림자 끔)</option></select></label>
@@ -99,8 +96,7 @@ button:hover,button.on{background:var(--g);color:#1a0f0b}
 if(typeof THREE==='undefined'){$m=document.getElementById('mp');$m.textContent='Three.js를 불러오지 못했습니다. 인터넷 연결을 확인하고 새로고침하세요.';document.getElementById('bs').style.display='none'}
 else(()=>{
 const $=i=>document.getElementById(i),TOUCH=navigator.maxTouchPoints>0,rnd=(a,b)=>a+Math.random()*(b-a);
-document.body.classList.add('touch');if(TOUCH)$('mk').textContent='왼쪽 화면 드래그: 이동 · 오른쪽 화면 드래그: 시점 · 화면 탭: 손전등 · 오른쪽 아래 버튼: 사용/달리기/주기';
-
+if(TOUCH){document.body.classList.add('touch');$('mk').textContent='왼쪽 화면 드래그: 이동 · 오른쪽 화면 드래그: 시점 · 오른쪽 아래 버튼: 사용/달리기'}
 // ---- 렌더러/조명
 const R=new THREE.WebGLRenderer({antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,1.5));R.setSize(innerWidth,innerHeight);
 R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFShadowMap;document.body.prepend(R.domElement);
@@ -165,14 +161,16 @@ function build0(n){
   col.push({x,z,hw:t[0]/2,hd:t[1]/2});if(ty==4)drawers.push({x,z,side,done:0});lampPos.push([x,t[2]+.3,z]);i++}
  for(let i=0;i<3;i++){const side=Math.random()<.5?-1:1,z=rnd(-D/2+2,D/2-2);bx(grp,.05,.9,1.1,side*(W/2-.03),1.9,z,M(0x1a1a14),false);bx(grp,.06,.7,.9,side*(W/2-.05),1.9,z,M([0x703020,0x20405a,0x506030][i]),false)}
  dLock=n>=5&&Math.random()<.3*FM&&drawers.length?1:0;if(dLock){bx(door,.15,.2,.12,1.2,.9,.1,M(0xaa2222));drawers[Math.random()*drawers.length|0].key=1}
- if(n>=15)for(let i=0;i<1+(Math.random()*2|0);i++){const x=rnd(-1,1),z=rnd(-D/2+3,D/2-4);snares.push({x,z,on:1,m:bx(grp,.7,.06,.7,x,.03,z,M(0x3a0e0e),false)})}
+ if(n>=90)for(let i=0;i<3+(Math.random()*3|0);i++){const x=rnd(-1,1),z=rnd(-D/2+3,D/2-4);snares.push({x,z,on:1,m:bx(grp,.7,.06,.7,x,.03,z,M(0x3a0e0e),false)})}
+ if(n>=90&&n<=99)amb.color.setHSL(.33,.5,.16);
  // 조명 기구
  main.position.set(0,Hh-.4,rnd(-D/6,D/6));bx(grp,.4,.1,.4,0,Hh-.05,main.position.z,new THREE.MeshBasicMaterial({color:0xffe0a0}),false);
  lamps.forEach((l,i)=>{const p=lampPos[i];if(p&&n%3){l.position.set(p[0],p[1],p[2]);l.intensity=rnd(.4,.9);const b=new THREE.Mesh(new THREE.SphereGeometry(.1,8,8),new THREE.MeshBasicMaterial({color:0xffb060}));b.position.set(p[0],p[1],p[2]);grp.add(b)}else l.intensity=0});
  cam.position.set(0,1.65,D/2-1.2);yaw=0;pitch=0;
  // 괴물 예약
- const F=FM;rushT=n>1&&Math.random()<Math.min(.85,(.3+n*.008)*F)?rnd(6,18):-1;rushType=n>=12&&Math.random()<.4?'ambush':'rush';stT=n>=8&&Math.random()<.2*F?rnd(8,16):-1;eyesOn=n>=12&&Math.random()<.2*F;scT=n>=6&&Math.random()<.2*F?rnd(8,20):-1;seekT=n>=30&&n!=50&&Math.random()<.14*F?rnd(5,10):-1;
+ const F=FM;rushT=n>=3&&Math.random()<Math.min(.85,(.3+n*.008)*F)?rnd(6,18):-1;rushType=n>=3&&Math.random()<.4?'ambush':'rush';stT=n>=8&&Math.random()<.2*F?rnd(8,16):-1;eyesOn=n>=2&&Math.random()<.2*F;scT=n>=6&&Math.random()<.2*F?rnd(8,20):-1;seekT=(n==30||n==70)?rnd(5,8):-1;
  if(n==50||n==100){fig=mkStalk();fig.scale.setScalar(1.15);fig.position.set(0,0,-D/2+4);fig.userData={m:0,lt:0,v:1};S.add(fig)}
+ if((n>=24&&n<=29)||(n>=64&&n<=69)){const k=n<30?n-22:n-62;for(let i=0;i<k*2;i++){const e=new THREE.Mesh(new THREE.SphereGeometry(.07,8,6),new THREE.MeshBasicMaterial({color:0xf2f2e6}));e.position.set((Math.random()<.5?-1:1)*(W/2-.06),rnd(1.4,Hh-.3),rnd(-D/2+1,D/2-1));e.rotation.y=Math.PI/2;grp.add(e)}}
  if(eyesOn){eyes=mkEyes();eyes.position.set(rnd(-W/3,W/3),2.2,rnd(-D/3,D/3));S.add(eyes)}
 
  $('rn').textContent='ROOM '+n;TN=({lib:'도서관',hos:'병원',hot:'호텔'})[th];
@@ -267,16 +265,9 @@ function update(dt,t){
 }
 // ---- 아이템/저장/메뉴
 const IT=[['flash','🔦','손전등','어둠을 밝힙니다'],['pick','🗝️','락픽','잠긴 문을 엽니다'],['key','🔑','열쇠','잠긴 문을 엽니다'],['cross','✝️','십자가','주변 괴물을 쫓아냅니다'],['vit','💊','비타민','체력+40, 잠시 빨라집니다']];
-let order=IT.map(i=>i[0]),pk=-1;const slots=()=>order.filter(k=>k=='flash'||inv[k]>0).map(k=>IT.find(i=>i[0]==k));
-const toggleFl=()=>{if(st!='play')return;fl.intensity=fl.intensity?0:1.2;tone(900,.04,.06,'square')};
-function clickSlot(i){const L=slots();if(pk<0)pk=i;else if(pk==i)pk=-1;else{const a=order.indexOf(L[pk][0]),b=order.indexOf(L[i][0]);[order[a],order[b]]=[order[b],order[a]];pk=-1;tone(500,.08,.08,'sine')}sel=i;hotbar()}
-function giveItem(){if(!MP.on||!MP.rm){say('멀티플레이 중에만 쓸 수 있어요');return}const it=slots()[sel];if(!it||it[0]=='flash'){say('줄 아이템을 선택하세요 (손전등 제외)');return}
- const p=cam.position;let best=null,bd=6;for(const id in MP.peers){const a=MP.peers[id].av;if(!a.visible)continue;const d=Math.hypot(a.position.x-p.x,a.position.z-p.z);if(d<bd){bd=d;best=id}}
- if(!best){say('6m 이내에 친구가 없어요');return}
- const k=it[0];inv[k]--;MP.rm.send({type:'broadcast',event:'g',payload:{to:best,from:MP.nick,k}});say(MP.peers[best].n+'님에게 '+it[1]+' '+it[2]+' 전달!');tone(700,.15,.1,'sine',1000);hotbar()}
-function gotGift(m){if(!m||m.to!=MP.id||m.k=='flash'||!(m.k in inv))return;inv[m.k]++;hotbar();say(String(m.from).slice(0,8)+'님이 '+IT.find(i=>i[0]==m.k)[1]+' 아이템을 줬어요!');tone(900,.2,.12,'sine',1300)}
+const slots=()=>IT.filter(i=>i[0]=='flash'||inv[i[0]]>0);
 function say(t){const m=$('msg');m.textContent=t;m.style.opacity=1;clearTimeout(say.t);say.t=setTimeout(()=>m.style.opacity=0,2200)}
-function hotbar(){sel=Math.max(0,Math.min(sel,slots().length-1));if(pk>=slots().length)pk=-1;const h=$('hb2');h.innerHTML='';slots().forEach((it,i)=>{const b=document.createElement('button');b.className='slot'+(i==sel?' on':'')+(i==pk?' pk':'');b.innerHTML=`<s>${i+1}</s>${it[1]}${it[0]!='flash'?'<em>x'+inv[it[0]]+'</em>':''}`;b.onclick=()=>clickSlot(i);b.ondblclick=()=>{sel=i;useItem()};h.appendChild(b)});renderInv()}
+function hotbar(){sel=Math.max(0,Math.min(sel,slots().length-1));const h=$('hb2');h.innerHTML='';slots().forEach((it,i)=>{const b=document.createElement('button');b.className='slot'+(i==sel?' on':'');b.innerHTML=`<s>${i+1}</s>${it[1]}${it[0]!='flash'?'<em>x'+inv[it[0]]+'</em>':''}`;b.onclick=()=>{sel=i;useItem()};h.appendChild(b)});renderInv()}
 function renderInv(){const v=$('inv');v.innerHTML='<b>인벤토리</b>';slots().forEach((it,i)=>{const d=document.createElement('div');d.innerHTML=`${it[1]} ${it[2]}${it[0]!='flash'?' x'+inv[it[0]]:''} — ${it[3]} `;const b=document.createElement('button');b.textContent='사용';b.onclick=()=>{sel=i;useItem()};d.appendChild(b);v.appendChild(d)})}
 function useItem(){const it=slots()[sel];if(!it||st!='play')return;const k=it[0];
  if(k=='flash'){fl.intensity=fl.intensity?0:1.2}
@@ -289,12 +280,12 @@ function openDr(w){w.done=1;tone(180,.25,.1,'sine');
  if(!w.key&&room>=4&&Math.random()<.1*FM){hurtP(18,'t');say('Timothy!');tone(2000,.4,.3,'sawtooth',500);return}
  if(w.key){inv.key++;say('🔑 열쇠를 찾았다!')}
  else{const r=Math.random();if(r<.3){inv.vit++;say('💊 비타민 획득')}else if(r<.5){inv.pick++;say('🗝️ 락픽 획득')}else if(r<.6){inv.cross++;say('✝️ 십자가 획득')}else say('텅 비어 있다')}hotbar()}
-function save(){if(MP.on)return;try{localStorage.dsave=JSON.stringify({room,hp:Math.max(40,hp),inv,order})}catch(e){}}
+function save(){if(MP.on)return;try{localStorage.dsave=JSON.stringify({room,hp:Math.max(40,hp),inv})}catch(e){}}
 function pauseGame(){if(st!='play')return;st='pause';document.exitPointerLock&&document.exitPointerLock();$('pz').classList.remove('hide')}
 function resume(){$('pz').classList.add('hide');st='play';lock()}
 function applySet(){vol=+$('vol').value;if(MG)MG.gain.value=vol;const q=+$('qual').value;R.shadowMap.enabled=q>0;main.castShadow=q>0;R.setPixelRatio(q==2?Math.min(devicePixelRatio,1.5):q==1?1:.7);R.setSize(innerWidth,innerHeight);fpsI=1000/+$('fps').value;dm=+$('diff').value;FM=dm<1?.7:dm>1?1.35:1;Object.values(mats).forEach(m=>m.needsUpdate=true)}
 ['vol','qual','fps','diff'].forEach(i=>$(i).oninput=$(i).onchange=applySet);applySet();
-const DEX=[['Rush','⚫','모든 방(조명 깜빡임 후)','복도를 빠르게 돌진, 체력 60 피해','경고음이 들리면 옷장에 숨기'],['Ambush','🟢','12번 방~','여러 번 왕복하며 돌진','숨은 채 완전히 사라질 때까지 대기'],['Eyes','👁️','12번 방~','바라보면 체력이 계속 깎임','시선을 돌리고 지나가기'],['Screech','😶','6번 방~','뒤에서 나타나 1.4초 안에 못 보면 피해','나타나면 즉시 돌아서 바라보기'],['Hide','🚪','옷장','12초 넘게 숨으면 밀어내고 피해','오래 숨지 말기'],['Figure','🧍','50·100번 방','눈이 멀었지만 소리로 추적, 닿으면 즉사','C로 앉아 걷기, 옷장에 숨기'],['Seek','🌑','30번 방~','긴 추격전, 숨어도 피해 50','멈추지 말고 문까지 달리기, 십자가'],['Snare','🪤','15번 방~','바닥 함정, 피해와 경직','점프로 넘거나 피해 가기'],['Timothy','🕷️','서랍(4번 방~)','서랍을 열면 가끔 튀어나옴','운. 체력 유지하기'],['Jack','🤡','옷장(10번 방~)','숨으려 할 때 가끔 튀어나옴','체력 유지하기'],['Dread','💀','8번 방~ / 한 방에 70초 이상','천천히 추적, 닿으면 즉사','달려서 거리 벌리기, 옷장, 십자가']];
+const DEX=[['Rush','⚫','3번 방~ (조명 깜빡임 후)','복도를 빠르게 돌진, 체력 60 피해','경고음이 들리면 옷장에 숨기'],['Ambush','🟢','3번 방~','여러 번 왕복하며 돌진','숨은 채 완전히 사라질 때까지 대기'],['Eyes','👁️','2번 방~','바라보면 체력이 계속 깎임','시선을 돌리고 지나가기'],['Screech','😶','6번 방~ (주로 어두운 방)','뒤에서 나타나 1.4초 안에 못 보면 피해','나타나면 즉시 돌아서 바라보기'],['Hide','🚪','옷장·침대','12초 넘게 숨으면 밀어내고 피해','오래 숨지 말기'],['Figure','🧍','50번(도서관)·100번(발전기실)','눈이 멀었지만 소리로 추적, 닿으면 즉사','C로 앉아 걷기, 옷장에 숨기'],['Seek','🌑','벽·천장에 눈이 늘어난 뒤 30·70번 추격전','긴 추격전, 숨어도 피해 50','멈추지 말고 문까지 달리기, 십자가'],['Snare','🪤','90번 방~ (온실)','바닥 함정, 피해와 경직','점프로 넘거나 피해 가기'],['Timothy','🕷️','서랍 (4번 방~)','서랍을 열면 가끔 튀어나옴','운. 체력 유지하기'],['Jack','🤡','옷장 (10번 방~)','숨으려 할 때 가끔 튀어나옴','체력 유지하기'],['Dread','💀','한 방에 70초 이상 머무를 때','천천히 추적, 닿으면 즉사','달려서 거리 벌리기, 옷장, 십자가']];
 DEX.forEach(([n,e,w,a,sv])=>{const d=document.createElement('div');d.innerHTML=`<i>${e}</i><b>${n}</b><br>등장: ${w}<br>공격: ${a}<br>생존: ${sv}`;$('dl').appendChild(d)});
 const sh=(a,b)=>{$(a).onclick=()=>$(b).classList.remove('hide')},hd=(a,b)=>{$(a).onclick=()=>$(b).classList.add('hide')};
 sh('bset','set');sh('pbset','set');sh('bdex','dex');sh('bcr','cr');hd('setx','set');hd('dexx','dex');hd('crx','cr');
@@ -307,19 +298,17 @@ let last=0;function loop(ts){requestAnimationFrame(loop);if(ts-lastR<fpsI-2)retu
 // ---- UI
 function menu(t,b,txt){$('mt').textContent=t;$('bs').textContent=b;$('mp').style.display=txt?'':'none';$('menu').classList.remove('hide')}
 function lock(){if(!TOUCH&&R.domElement.requestPointerLock)try{R.domElement.requestPointerLock()}catch(e){}}
-function begin(c){fs();au();$('menu').classList.add('hide');if(st=='menu'||st=='over'){hp=100;room=1;inv={flash:1,pick:0,key:0,cross:0,vit:0};if(c)try{const d=JSON.parse(localStorage.dsave);room=d.room;hp=d.hp;inv=d.inv;order=d.order||order}catch(e){}build(room);banner(room);hotbar()}st='play';lock()}
+function begin(c){au();$('menu').classList.add('hide');if(st=='menu'||st=='over'){hp=100;room=1;inv={flash:1,pick:0,key:0,cross:0,vit:0};if(c)try{const d=JSON.parse(localStorage.dsave);room=d.room;hp=d.hp;inv=d.inv}catch(e){}build(room);banner(room);hotbar()}st='play';lock()}
 $('bc').onclick=()=>begin(1);$('br').onclick=()=>{$('over').classList.add('hide');st='menu';begin(1)};
-document.addEventListener('pointerlockchange',()=>{locked=!!document.pointerLockElement;if(!locked&&st=='play'&&!TOUCH&&!admOpen)say('마우스 해제됨 · 화면을 클릭하면 다시 고정 · P 일시정지')});
+document.addEventListener('pointerlockchange',()=>{locked=!!document.pointerLockElement;if(!locked&&st=='play'&&!TOUCH&&!admOpen)pauseGame()});
 $('bs').addEventListener('click',()=>{if(st=='pause')st='play'});
-let drag=0,dd=0;addEventListener('mousedown',()=>{drag=1;dd=0});addEventListener('mouseup',()=>drag=0);addEventListener('mousemove',e=>dd+=Math.abs(e.movementX||0)+Math.abs(e.movementY||0));
-addEventListener('click',e=>{if(st!='play'||admOpen||(e.target.closest&&e.target.closest('button,#adm,.ov,input,select,#inv,#jb')))return;if(!TOUCH&&!locked){lock();return}if(dd<10)toggleFl()});
-function fs(){try{const d=document.documentElement,r=d.requestFullscreen||d.webkitRequestFullscreen;if(r&&!document.fullscreenElement&&!document.webkitFullscreenElement){const q=r.call(d);q&&q.catch&&q.catch(()=>{})}}catch(e){}}
+let drag=0;addEventListener('mousedown',()=>drag=1);addEventListener('mouseup',()=>drag=0);
 addEventListener('mousemove',e=>{if((locked||drag)&&st=='play'&&!hid&&!admOpen){yaw-=e.movementX*.0022;pitch=Math.max(-1.3,Math.min(1.3,pitch-e.movementY*.0022))}});
 addEventListener('keydown',e=>{if(e.target.tagName=='INPUT')return;if(st=='over'&&QCUR&&!QDONE&&/^Digit[1-5]$/.test(e.code)){answerQ(+e.code[5]-1);return}if(e.code=='Backquote'){toggleAdm();return}K[e.code]=1;
- if(e.code=='KeyE')act();if(e.code=='KeyF')toggleFl();if(e.code=='KeyG')giveItem();if(/^Digit[1-5]$/.test(e.code)){sel=+e.code[5]-1;useItem()}if(e.code=='KeyP')pauseGame();if(e.code=='Space')e.preventDefault()});
+ if(e.code=='KeyE')act();if(e.code=='KeyF')fl.intensity=fl.intensity?0:1.2;if(/^Digit[1-5]$/.test(e.code)){sel=+e.code[5]-1;useItem()}if(e.code=='KeyP')pauseGame();if(e.code=='Space')e.preventDefault()});
 addEventListener('keyup',e=>K[e.code]=0);
 // 관리자
-const AB=[['무적',()=>god=!god],['체력 회복',()=>hp=100],['다음 방',()=>go(room+1)],['이전 방',()=>go(room-1)],['Rush 소환',()=>rushT=.1],['추격자 소환',()=>stT=.1],['괴물 제거',clr],['아이템 +3',()=>{['pick','key','cross','vit'].forEach(k=>inv[k]+=3);hotbar()}],['100번방',()=>go(100)]];
+const AB=[['무적',()=>god=!god],['체력 회복',()=>hp=100],['다음 방',()=>go(room+1)],['이전 방',()=>go(room-1)],['Rush 소환',()=>rushT=.1],['추격자 소환',()=>stT=.1],['괴물 제거',clr],['100번방',()=>go(100)]];
 AB.forEach(([n,f])=>{const b=document.createElement('button');b.textContent=n;b.onclick=()=>{if(st=='play')f();b.classList.toggle('on')};$('adm').appendChild(b)});
 const ai=document.createElement('input');ai.type='number';ai.placeholder='방 번호';$('adm').appendChild(ai);
 const ab=document.createElement('button');ab.textContent='이동';ab.onclick=()=>{if(ai.value&&st=='play')go(+ai.value)};$('adm').appendChild(ab);
@@ -329,7 +318,7 @@ function toggleAdm(){if(st!='play'&&!admOpen)return;if(admOpen){admOpen=0;$('adm
 function chk(){if($('pw').value==='102030'){authed=1;$('pwd').classList.add('hide');admOpen=0;toggleAdm()}else $('pwe').textContent='비밀번호가 틀렸습니다'}
 $('pwok').onclick=chk;$('pw').onkeydown=e=>{if(e.key=='Enter')chk()};$('pwno').onclick=()=>{$('pwd').classList.add('hide');admOpen=0};$('gear').onclick=toggleAdm;
 // 터치
-{const jb=$('jb'),jk=jb.firstChild,Rr=55;let jid=null,lid=null,jx=0,jy=0,lx=0,ly=0;
+if(TOUCH){const jb=$('jb'),jk=jb.firstChild,Rr=55;let jid=null,lid=null,jx=0,jy=0,lx=0,ly=0;
  const sk2=t=>t.target.closest&&t.target.closest('button,#adm,.ov,input');
  document.addEventListener('touchstart',e=>{for(const t of e.changedTouches){if(sk2(t))continue;
   if(t.clientX<innerWidth*.45&&jid==null){jid=t.identifier;const rr=jb.getBoundingClientRect();jx=rr.left+65;jy=rr.top+65;jb.style.opacity=.9;jk.style.transform='none'}
@@ -339,11 +328,8 @@ $('pwok').onclick=chk;$('pw').onkeydown=e=>{if(e.key=='Enter')chk()};$('pwno').o
   else if(t.identifier==lid&&st=='play'&&!hid){yaw-=(t.clientX-lx)*.006;pitch=Math.max(-1.3,Math.min(1.3,pitch-(t.clientY-ly)*.006));lx=t.clientX;ly=t.clientY}}},{passive:false});
  const en=e=>{for(const t of e.changedTouches){if(t.identifier==jid){jid=null;joy.x=joy.y=0;jb.style.opacity=.45}if(t.identifier==lid)lid=null}};
  document.addEventListener('touchend',en);document.addEventListener('touchcancel',en);document.addEventListener('contextmenu',e=>e.preventDefault());
- const tb=(id,dn,up)=>{const b=$(id);b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();dn()});if(up)['pointerup','pointercancel','pointerleave'].forEach(v=>b.addEventListener(v,up))};
- tb('bE',act);tb('bH',()=>{const t=hid?1:target();if(t&&(hid||t.t=='ward'))act();else say('가까운 옷장이 없습니다')});tb('bJ',()=>tJump=1,()=>tJump=0);tb('bC',()=>{tCr=!tCr;$('bC').classList.toggle('on',tCr)});tb('bU',()=>useItem());tb('bR',()=>joy.run=1,()=>joy.run=0);tb('bG',giveItem);
- let mj=0;jb.addEventListener('mousedown',e=>{e.preventDefault();e.stopPropagation();mj=1;jb.style.opacity=.9});
- addEventListener('mousemove',e=>{if(!mj)return;const r=jb.getBoundingClientRect();let dx=(e.clientX-r.left-65)/Rr,dy=(e.clientY-r.top-65)/Rr;const l=Math.hypot(dx,dy);if(l>1){dx/=l;dy/=l}jk.style.transform=`translate(${dx*Rr*.7}px,${dy*Rr*.7}px)`;const z=Math.hypot(dx,dy)<.15;joy.x=z?0:dx;joy.y=z?0:dy});
- addEventListener('mouseup',()=>{if(mj){mj=0;joy.x=joy.y=0;jk.style.transform='none';jb.style.opacity=.45}})}
+ const tb=(id,dn,up)=>{const b=$(id);b.addEventListener('touchstart',e=>{e.preventDefault();dn()},{passive:false});if(up){b.addEventListener('touchend',up);b.addEventListener('touchcancel',up)}};
+ tb('bE',act);tb('bH',()=>{const t=hid?1:target();if(t&&(hid||t.t=='ward'))act();else say('가까운 옷장이 없습니다')});tb('bJ',()=>tJump=1,()=>tJump=0);tb('bC',()=>{tCr=!tCr;$('bC').classList.toggle('on',tCr)});tb('bU',()=>useItem());tb('bR',()=>joy.run=1,()=>joy.run=0)}
 // ---- 퀴즈 부활: 죽으면 문제를 풀고, 맞히면 되살아남 (문제는 Supabase에서 불러오고, 실패하면 내장 문제 사용)
 const SB='https://ertyuadsjrykyibtsrxy.supabase.co/rest/v1/',SBK=['sb_publishable_-va97_Zvrd10IZFb-5ediQ_Kgq4TBF5','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVydHl1YWRzanJ5a3lpYnRzcnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3NTM1MDAsImV4cCI6MjEwODMyOTUwMH0.iJ0lEfBqJ47RD5k74Jfi5jCxjCeRUvr9dGkDVv5TAlM'];
 const QF=[["구석기 시대 사람들의 생활 모습으로 알맞은 것은?", ["농사를 지으며 살았다.", "동굴이나 바위 그늘에서 살았다.", "청동으로 농기구를 만들었다.", "벼농사를 시작했다.", "성을 쌓고 나라를 세웠다."], 2, "구석기 시대 사람들은 사냥과 열매 채집을 하며 동굴이나 바위 그늘에서 생활했어요."], ["신석기 시대의 생활 모습으로 알맞은 것은?", ["뗀석기를 사용했다.", "동굴에서만 생활했다.", "농사를 짓고 한곳에 정착했다.", "철제 무기를 사용했다.", "고인돌을 만들었다."], 3, "신석기 시대에는 농사를 짓기 시작하면서 움집을 짓고 한곳에 정착해 살았어요."], ["청동기 시대의 대표적인 유물은 무엇일까요?", ["빗살무늬 토기", "주먹도끼", "반달 돌칼", "철제 갑옷", "화승총"], 3, "반달 돌칼은 청동기 시대에 곡식을 수확할 때 사용했던 도구예요."], ["우리 역사에서 최초의 국가로 알려진 나라는 어디일까요?", ["고구려", "백제", "신라", "고조선", "발해"], 4, "고조선은 우리 역사에서 최초의 국가로 알려져 있어요."], ["고조선을 세웠다고 전해지는 인물은 누구일까요?", ["주몽", "단군왕검", "박혁거세", "온조", "대조영"], 2, "단군왕검은 단군 신화에서 고조선을 세운 인물이에요."], ["고구려, 백제, 신라에 대한 설명으로 알맞은 것은?", ["모두 같은 날 세워졌다.", "모두 중국의 나라였다.", "우리 역사 속의 삼국이다.", "모두 바다 위에 세워졌다.", "모두 조선 시대의 나라이다."], 3, "고구려, 백제, 신라는 우리 역사에서 삼국이라고 불리는 세 나라예요."], ["고구려를 세운 인물은 누구일까요?", ["온조", "박혁거세", "대조영", "주몽", "왕건"], 4, "주몽은 기원전 37년에 고구려를 세운 인물이에요."], ["신라가 삼국 통일을 이루는 과정에서 힘을 합친 나라는 어디일까요?", ["일본", "당", "몽골", "인도", "베트남"], 2, "신라는 당과 힘을 합쳐 백제와 고구려를 멸망시켰어요. 이후 당을 몰아내고 삼국 통일을 이루었어요."], ["발해를 세운 인물은 누구일까요?", ["단군왕검", "주몽", "대조영", "왕건", "이성계"], 3, "대조영은 고구려가 멸망한 뒤 여러 사람과 함께 발해를 세웠어요."], ["발해에 대한 설명으로 알맞은 것은?", ["고조선보다 먼저 세워졌다.", "대조영이 세운 나라이다.", "조선의 수도였다.", "신라가 세운 나라이다.", "고려 다음에 세워졌다."], 2, "발해는 대조영이 세운 나라로, 고구려의 문화를 이어받았어요."]].map(([q,c,a,e])=>({q,c,a:a-1,e}));
@@ -405,7 +391,7 @@ function drawRooms(){const L=rooms(),box=$('xrl');box.textContent='';$('xlt').te
 function members(){const s=MP.rm?MP.rm.presenceState():{},a=[];for(const k in s){const m=lastMeta(s[k]);if(m)a.push({id:k,nick:String(m.nick||'?').slice(0,8),ch:m.ch,t:m.t||0,host:m.host,st:m.st,seed:m.seed})}return a.sort((x,y)=>x.t-y.t)}
 function enterRoom(){const r=MP.room;MP.started=false;MP.n=1;MP.peers={};MP.jt=Date.now();
  const c=MP.rm=MP.sb.channel('doors-room-'+r.id,{config:{presence:{key:MP.id},broadcast:{self:false}}});
- c.on('presence',{event:'sync'},roomSync).on('broadcast',{event:'p'},({payload})=>peerPos(payload)).on('broadcast',{event:'g'},({payload})=>gotGift(payload))
+ c.on('presence',{event:'sync'},roomSync).on('broadcast',{event:'p'},({payload})=>peerPos(payload))
   .subscribe(s=>{if(s=='SUBSCRIBED')c.track({nick:MP.nick,ch:MP.ch,t:MP.jt,host:MP.host?1:0});else if(s=='CHANNEL_ERROR'||s=='TIMED_OUT')leaveRoom('방 연결에 실패했어요')});
  $('xrt').textContent='🚪 '+r.name;$('xmem').textContent='';$('xrm').textContent=MP.host?'':'방장이 시작하기를 누를 때까지 기다려 주세요';
  $('xgo').textContent='시작하기';$('xgo').classList.toggle('hide',!MP.host);xshow('xr');lobTrack()}
@@ -421,7 +407,7 @@ function roomSync(){if(!MP.rm)return;const a=members(),me=a.findIndex(m=>m.id==M
  const ml=$('xmem');ml.textContent='';a.forEach(m=>{const d=document.createElement('div');d.textContent=chOf(m.ch)[0]+' '+m.nick+(m.host?' 👑':'')+(m.id==MP.id?' (나)':'');ml.appendChild(d)});
  if(MP.host&&MP.n!=a.length){MP.n=a.length;lobTrack()}}
 function hostStart(){const seed=Math.random()*4294967296>>>0;MP.started=true;MP.seed=seed;MP.rm.track({nick:MP.nick,ch:MP.ch,t:MP.jt,host:1,st:1,seed});lobTrack();startMP(seed)}
-function startMP(seed){if(MP.on)return;MP.on=true;document.body.classList.add('mp');MP.started=true;MP.seed=seed>>>0;xshow(null);$('xpl').classList.remove('hide');begin();drawPL()}
+function startMP(seed){if(MP.on)return;MP.on=true;MP.started=true;MP.seed=seed>>>0;xshow(null);$('xpl').classList.remove('hide');begin();drawPL()}
 // 다른 플레이어 캐릭터(+머리 위 닉네임)
 function mkAvatar(ch,nick){const g=new THREE.Group(),c=chOf(ch)[2],m=new THREE.MeshStandardMaterial({color:c,roughness:.8,emissive:c,emissiveIntensity:.25}),w=new THREE.MeshBasicMaterial({color:0xffffff}),k=new THREE.MeshBasicMaterial({color:0x000000}),
  add=(geo,mat,x,y,z)=>{const o=new THREE.Mesh(geo,mat);o.position.set(x,y,z);g.add(o);return o};
@@ -448,7 +434,7 @@ function mpTick(dt){MP.acc+=dt;
   a.visible=q.r==room&&!q.d&&!q.h&&performance.now()-q.seen<4000}
  if((MP.pl+=dt)>=1){MP.pl=0;drawPL()}}
 // 버튼 연결
-$('bs').onclick=()=>{fs();xshow('xmode')};
+$('bs').onclick=()=>xshow('xmode');
 $('xm1').onclick=()=>{xshow(null);begin()};
 $('xm2').onclick=()=>{xshow('xc');xchk();mpInit()};
 $('xb0').onclick=()=>xshow('menu');
